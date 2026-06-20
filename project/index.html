@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoTrack OS - Nexus Infinity Edition</title>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght=400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <nav class="sidebar">
+        <div class="logo">
+            <span class="logo-dot"></span>
+            <h2>EcoTrack<span>OS</span></h2>
+        </div>
+        <ul class="nav-links">
+            <li class="nav-item active" data-tab="dashboard">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect></svg>
+                Control Center
+            </li>
+            <li class="nav-item" data-tab="analytics">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"></line><line x1="12" y1="20" x2="12" y2="4"></line><line x1="6" y1="20" x2="6" y2="14"></line></svg>
+                ML Forecaster
+            </li>
+            <li class="nav-item" data-tab="quests">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"></polyline><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"></path></svg>
+                Mitigation Quests
+            </li>
+            <li class="nav-item" data-tab="marketplace">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="16"></line><line x1="8" y1="12" x2="12" y2="12"></line></svg>
+                Offset Market
+            </li>
+            <li class="nav-item" data-tab="global-sync">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                Global Nexus
+            </li>
+        </ul>
+
+        <div class="achievement-matrix">
+            <p class="matrix-title">Unlocked Grid Matrix</p>
+            <div class="badge-grid">
+                <div class="badge-slot locked" id="badge-efficiency" title="Grid run parameters optimized beneath 5 hours">⚡</div>
+                <div class="badge-slot locked" id="badge-mobility" title="Carbon transit parameters compressed beneath 1.5 tons">🚲</div>
+                <div class="badge-slot locked" id="badge-guardian" title="Global footprint score securely under target threshold">🏅</div>
+            </div>
+        </div>
+
+        <div class="theme-toggle-container">
+            <span>Dark Protocol</span>
+            <label class="toggle-switch">
+                <input type="checkbox" id="theme-toggle">
+                <span class="toggle-slider"></span>
+            </label>
+        </div>
+
+        <div class="user-profile">
+            <div class="avatar">Ω</div>
+            <div class="user-info">
+                <p class="user-name">Google Guest</p>
+                <p class="user-rank" id="user-rank">Sprout Tier 🌱</p>
+            </div>
+        </div>
+    </nav>
+
+    <div class="toast-deck" id="toast-deck"></div>
+
+    <main class="main-content">
+        <header>
+            <div class="welcome-text">
+                <h1>EcoTrack OS Nexus</h1>
+                <p>Distributed behavioral analysis compiling ecological footprint matrices.</p>
+            </div>
+            <div class="live-badge badge-green" id="status-badge">Optimized Node</div>
+        </header>
+
+        <section id="dashboard" class="tab-content active">
+            <div class="grid-layout">
+                <div class="card simulator-card">
+                    <h3>Simulation Vector Matrices</h3>
+                    <p class="card-subtitle">Manipulate inputs to compile immediate resource projections.</p>
+                    
+                    <div class="control-group">
+                        <div class="slider-header">
+                            <label for="commute">Daily Transit Vector</label>
+                            <span class="slider-value"><span id="commute-val">25</span> km</span>
+                        </div>
+                        <input type="range" id="commute" min="0" max="100" value="25" class="slider">
+                    </div>
+
+                    <div class="control-group">
+                        <div class="slider-header">
+                            <label for="energy">Appliance Active Runtime</label>
+                            <span class="slider-value"><span id="energy-val">8</span> hrs</span>
+                        </div>
+                        <input type="range" id="energy" min="0" max="24" value="8" class="slider">
+                    </div>
+
+                    <div class="control-group">
+                        <div class="slider-header">
+                            <label for="diet">High-Intensity Ingestion Index</label>
+                            <span class="slider-value"><span id="diet-val">10</span> / wk</span>
+                        </div>
+                        <input type="range" id="diet" min="0" max="21" value="10" class="slider">
+                    </div>
+
+                    <div class="insight-box" id="insight-box">
+                        <strong>Engine Diagnostics:</strong> Stabilizing telemetry data arrays...
+                    </div>
+                </div>
+
+                <div class="card metric-card">
+                    <h3>Carbon Compilation</h3>
+                    <div class="score-container">
+                        <div class="circular-progress" id="progress-circle">
+                            <div class="inner-circle">
+                                <span class="score-number" id="score-display">0.0</span>
+                                <span class="score-unit">Metric Tons CO₂e</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="offset-text">
+                        <p>Environmental parameters balance with <strong id="trees-display">0</strong> mature forestry offset nodes.</p>
+                    </div>
+                    
+                    <div class="geo-mock-box">
+                        <div class="geo-header">
+                            <span>📍 Edge Node Location Sync</span>
+                            <span class="geo-pulse"></span>
+                        </div>
+                        <p id="geo-info">Pairing local grid efficiency metrics...</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card ledger-card">
+                <h3>Immutably Audited Impact Ledger</h3>
+                <p class="card-subtitle">Transactional tracking log monitoring continuous telemetry state modifications.</p>
+                
+                <button class="btn-action" id="export-ledger-btn" style="margin-bottom: 20px; background-color: var(--google-green);">
+                    📥 Export Cryptographic Audit Ledger
+                </button>
+
+                <div class="ledger-wrapper">
+                    <div class="ledger-header-row">
+                        <span>Timestamp</span>
+                        <span>Event Action Vector</span>
+                        <span>Delta Value</span>
+                    </div>
+                    <div class="ledger-body" id="ledger-body">
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="analytics" class="tab-content">
+            <div class="card chart-card">
+                <h3>Multi-Path Structural Footprint Forecaster</h3>
+                <p class="card-subtitle">Comparative model projections tracking worst-case vs optimized behavior paths.</p>
+                <div class="chart-container">
+                    <canvas id="projectionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="quests" class="tab-content">
+            <div class="card quests-card">
+                <h3>Behavioral Mitigation Protocols</h3>
+                <p class="card-subtitle">Execute optimization workflows to compress active base configurations.</p>
+                <div class="quest-list">
+                    <label class="quest-item">
+                        <input type="checkbox" class="quest-checkbox" data-reduction="0.6" data-title="Vampire Node Purge">
+                        <span class="custom-checkbox"></span>
+                        <div class="quest-details">
+                            <p class="quest-title">Isolate Smart Infrastructure Vampire Draw</p>
+                            <p class="quest-desc">Terminate background standby energy pulling lines. (-0.6T)</p>
+                        </div>
+                    </label>
+                    <label class="quest-item">
+                        <input type="checkbox" class="quest-checkbox" data-reduction="1.4" data-title="Transit Mode Override">
+                        <span class="custom-checkbox"></span>
+                        <div class="quest-details">
+                            <p class="quest-title">Override Local Commuting Array</p>
+                            <p class="quest-desc">Shift short-range travel loops to multi-modal networks. (-1.4T)</p>
+                        </div>
+                    </label>
+                    <label class="quest-item">
+                        <input type="checkbox" class="quest-checkbox" data-reduction="0.8" data-title="Supply Chain Adjustment">
+                        <span class="custom-checkbox"></span>
+                        <div class="quest-details">
+                            <p class="quest-title">Adjust Supply Chain Consumption Profile</p>
+                            <p class="quest-desc">Swap out 3 high-intensity manufacturing dietary segments. (-0.8T)</p>
+                        </div>
+                    </label>
+                </div>
+            </div>
+        </section>
+
+        <section id="marketplace" class="tab-content">
+            <div class="card market-card">
+                <h3>Environmental Offsets Marketplace</h3>
+                <p class="card-subtitle">Liquid balance estimation required to neutralize current simulated outstanding liabilities.</p>
+                
+                <div class="market-summary-grid">
+                    <div class="summary-node">
+                        <span class="node-label">Outstanding Liability</span>
+                        <span class="node-value" id="market-liability">0.0 T</span>
+                    </div>
+                    <div class="summary-node">
+                        <span class="node-label">Neutralization Cost</span>
+                        <span class="node-value text-blue" id="market-cost">$0.00</span>
+                    </div>
+                </div>
+
+                <div class="market-offers">
+                    <div class="offer-row">
+                        <div class="offer-meta">
+                            <h4>Reforestation Matrix Deployment</h4>
+                            <p>Direct sponsorship of monitored dense forest arrays.</p>
+                        </div>
+                        <button class="btn-action" onclick="purchaseOffset(1.5, 'Reforestation Vector')">Fund 1.5 Tons</button>
+                    </div>
+                    <div class="offer-row">
+                        <div class="offer-meta">
+                            <h4>Methane Captured Grid Override</h4>
+                            <p>Offsetting local thermal operations via agricultural conversion.</p>
+                        </div>
+                        <button class="btn-action" onclick="purchaseOffset(3.0, 'Methane Capture Sync')">Fund 3.0 Tons</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="global-sync" class="tab-content">
+            <div class="card leaderboard-card">
+                <h3>Global Standings Matrix</h3>
+                <p class="card-subtitle">Real-time status synchronizations parsing neighboring configuration nodes.</p>
+                
+                <div class="leaderboard-table">
+                    <div class="leaderboard-header-row">
+                        <span>Rank</span>
+                        <span>Node Identifier</span>
+                        <span>Carbon Index</span>
+                        <span>Status State</span>
+                    </div>
+                    <div class="leaderboard-body" id="leaderboard-body">
+                        </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
