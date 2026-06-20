@@ -35,6 +35,16 @@
                 <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
                 Global Nexus
             </li>
+                        <li class="nav-item" data-tab="poster">
+                                <a href="poster.html" style="color:inherit;display:flex;align-items:center;text-decoration:none">
+                                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"></rect><path d="M3 9h18"></path></svg>
+                                    &nbsp;Campus Poster
+                                </a>
+                        </li>
+                        <li class="nav-item" id="sidebar-carbon-audio-item" role="button" tabindex="0">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9v6a4 4 0 0 0 4 4h0"></path><path d="M21 8v8a2 2 0 0 1-2 2h-1"></path><path d="M14 3v10"></path></svg>
+                            Carbon Audio
+                        </li>
         </ul>
 
         <div class="achievement-matrix">
@@ -73,6 +83,44 @@
             </div>
             <div class="live-badge badge-green" id="status-badge">Optimized Node</div>
         </header>
+
+        <!-- Site hero: poster preview + callouts -->
+        <section class="site-hero">
+            <div class="hero-left">
+                <a class="poster-frame" href="poster.html" target="_blank" rel="noopener">
+                    <img src="assets/poster.png" alt="Campus poster">
+                </a>
+                <div class="poster-tools">
+                    <button id="reveal-audio-btn" class="icon-btn" aria-controls="audio-container" aria-expanded="false" title="Carbon Audio">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-right:8px"><path d="M3 9v6a4 4 0 0 0 4 4h0"></path><path d="M21 8v8a2 2 0 0 1-2 2h-1"></path><path d="M14 3v10"></path></svg>
+                        <span>Carbon Audio</span>
+                    </button>
+                </div>
+
+                <div id="audio-container" class="audio-container" aria-hidden="true">
+                    <audio id="anthem-audio" preload="metadata">
+                        <source src="assets/music.mp3" type="audio/mpeg">
+                        Your browser does not support the audio element.
+                    </audio>
+
+                    <div class="audio-controls-compact">
+                        <button id="play-audio-btn" class="play-btn" aria-label="Play">▶</button>
+                        <div id="audio-time" class="time">0:00 / 0:00</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-right">
+                <h2 class="hero-title">Fragment by Fragment, A Vision Emerges</h2>
+                <p class="hero-lead">Watch our community poster capture campus life — lectures, canteens, queues and placement pressure — and start the conversation: who are you, what do you stand for, and what's your campus beef?</p>
+
+                <div class="hero-actions">
+                    <a class="btn-action" href="poster.html" target="_blank">Open full poster</a>
+                    <a class="btn-action" href="assets/poster.png" download>Download</a>
+                </div>
+            </div>
+        </section>
+
 
         <section id="dashboard" class="tab-content active">
             <div class="grid-layout">
@@ -251,6 +299,7 @@
     </main>
 
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    
     <script src="script.js"></script>
 </body>
 </html>

@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Campus Poster</title>
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .poster-viewport{display:flex;align-items:center;justify-content:center;padding:40px}
+    .poster-card{max-width:780px;width:100%;box-shadow:0 30px 80px rgba(0,0,0,0.6);border-radius:10px;overflow:hidden}
+    .poster-card img{display:block;width:100%;height:auto}
+    .poster-actions{display:flex;gap:12px;padding:16px;background:#0f0f11;color:#fff}
+    .poster-actions a, .poster-actions button{background:linear-gradient(90deg,#7c3aed,#06b6d4);color:#021129;padding:10px 14px;border-radius:8px;text-decoration:none;border:none;font-weight:700}
+  </style>
+</head>
+<body>
+  <main class="poster-viewport">
+    <div>
+      <div class="poster-card">
+        <!-- Using uploaded poster file present in assets folder -->
+        <img src="assets/poster.png" alt="Campus poster">
+      </div>
+
+      <div class="poster-actions">
+        <a href="assets/poster.png" download>Download Poster</a>
+        <button onclick="window.print()">Print / Save as PDF</button>
+        <a href="index.html">Back to site</a>
+      </div>
+    </div>
+  </main>
+</body>
+</html>

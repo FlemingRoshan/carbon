@@ -340,6 +340,90 @@ function bindInputControllers() {
         });
     });
 
+    // Poster audio reveal + compact controls
+    const revealBtn = document.getElementById('reveal-audio-btn');
+    const audioContainer = document.getElementById('audio-container');
+    const anthemAudio = document.getElementById('anthem-audio');
+    const playAudioBtn = document.getElementById('play-audio-btn');
+    const audioTime = document.getElementById('audio-time');
+
+    function formatTime(sec) {
+        if (!sec || isNaN(sec)) return '0:00';
+        const m = Math.floor(sec / 60);
+        const s = Math.floor(sec % 60).toString().padStart(2, '0');
+        return `${m}:${s}`;
+    }
+
+    // (Button label set to 'Carbon Audio' in HTML; no filename overwrite)
+
+    if (revealBtn && audioContainer) {
+        revealBtn.addEventListener('click', () => {
+            const isOpen = audioContainer.classList.toggle('open');
+            revealBtn.setAttribute('aria-expanded', String(isOpen));
+            audioContainer.setAttribute('aria-hidden', String(!isOpen));
+            if (isOpen && anthemAudio) {
+                // update time display when opening
+                audioTime.textContent = `0:00 / ${formatTime(anthemAudio.duration)}`;
+            }
+        });
+    }
+
+    // Sidebar Carbon Audio item (make it visually match other nav items)
+    const sidebarAudioItem = document.getElementById('sidebar-carbon-audio-item');
+    if (sidebarAudioItem && audioContainer) {
+        sidebarAudioItem.addEventListener('click', (e) => {
+            e.preventDefault();
+            const willOpen = !audioContainer.classList.contains('open');
+            if (willOpen) {
+                audioContainer.classList.add('open');
+                audioContainer.setAttribute('aria-hidden', 'false');
+                revealBtn && revealBtn.setAttribute('aria-expanded', 'true');
+                // ensure the audio container is visible in viewport
+                setTimeout(() => audioContainer.scrollIntoView({ behavior: 'smooth', block: 'center' }), 120);
+                if (anthemAudio) audioTime.textContent = `0:00 / ${formatTime(anthemAudio.duration)}`;
+            } else {
+                audioContainer.classList.remove('open');
+                audioContainer.setAttribute('aria-hidden', 'true');
+                revealBtn && revealBtn.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // keyboard accessibility: Enter/Space toggles
+        sidebarAudioItem.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                sidebarAudioItem.click();
+            }
+        });
+    }
+
+    if (anthemAudio && playAudioBtn) {
+        anthemAudio.addEventListener('loadedmetadata', () => {
+            audioTime.textContent = `0:00 / ${formatTime(anthemAudio.duration)}`;
+        });
+
+        anthemAudio.addEventListener('timeupdate', () => {
+            audioTime.textContent = `${formatTime(anthemAudio.currentTime)} / ${formatTime(anthemAudio.duration)}`;
+        });
+
+        playAudioBtn.addEventListener('click', () => {
+            if (anthemAudio.paused) {
+                anthemAudio.play();
+                playAudioBtn.textContent = '⏸';
+                playAudioBtn.classList.remove('paused');
+            } else {
+                anthemAudio.pause();
+                playAudioBtn.textContent = '▶';
+                playAudioBtn.classList.add('paused');
+            }
+        });
+
+        anthemAudio.addEventListener('ended', () => {
+            playAudioBtn.textContent = '▶';
+            playAudioBtn.classList.add('paused');
+        });
+    }
+
     elements.themeToggle.addEventListener('change', (e) => {
         if (e.target.checked) {
             document.documentElement.setAttribute('data-theme', 'dark');
@@ -359,3 +443,4 @@ updateChartEngine();
 bindInputControllers();
 initGeoAffectorSimulation();
 processEnvironmentalMatrices();
+// Removed legacy right-side audio card handlers (compact player under poster used instead)

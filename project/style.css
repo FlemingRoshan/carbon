@@ -35,7 +35,7 @@ body { background-color: var(--bg-canvas); color: var(--text-primary); display: 
 .logo h2 { font-size: 22px; font-weight: 700; letter-spacing: -0.5px; }
 .logo h2 span { color: var(--google-blue); }
 
-.nav-links { list-style: none; display: flex; flex-direction: column; gap: 6px; flex-grow: 1; }
+.nav-links { list-style: none; display: flex; flex-direction: column; gap: 6px; flex: 1 1 auto; overflow-y: auto; padding-right: 8px; padding-bottom: 8px; -webkit-overflow-scrolling: touch; }
 .nav-item {
     display: flex; align-items: center; gap: 16px; padding: 14px 20px; border-radius: var(--radius-md);
     cursor: pointer; color: var(--text-secondary); font-weight: 600; font-size: 14.5px; transition: var(--transition-smooth);
@@ -61,6 +61,16 @@ input:checked + .toggle-slider { background-color: var(--google-blue); }
 input:checked + .toggle-slider:before { transform: translateX(20px); }
 
 .user-profile { display: flex; align-items: center; gap: 14px; border-top: 1px solid var(--border-color); padding-top: 24px; }
+
+/* Ensure sidebar bottom controls stay visible and nav area scrolls */
+.sidebar { display: flex; flex-direction: column; }
+.sidebar > .nav-links { flex: 1 1 auto; }
+
+/* Scrollbar styling for nav links for better visibility */
+.nav-links::-webkit-scrollbar { width: 8px; }
+.nav-links::-webkit-scrollbar-track { background: transparent; }
+.nav-links::-webkit-scrollbar-thumb { background: rgba(32,33,36,0.08); border-radius: 8px; }
+[data-theme="dark"] .nav-links::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.06); }
 .avatar { width: 42px; height: 42px; background-color: var(--google-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 700; }
 .user-name { font-size: 14px; font-weight: 700; }
 .user-rank { font-size: 12.5px; color: var(--text-secondary); }
@@ -158,3 +168,41 @@ header p { color: var(--text-secondary); margin-top: 4px; }
 @keyframes popSlideIn { from { opacity: 0; transform: translateY(24px) scale(0.9); } to { opacity: 1; transform: translateY(0) scale(1); } }
 @keyframes slideUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
 @keyframes bounce { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.2); } }
+
+/* Poster hero styles */
+.site-hero{display:flex;gap:36px;align-items:flex-start;margin-bottom:36px}
+.hero-left{flex:0 0 520px}
+.poster-frame{display:block;border-radius:12px;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,0.2);}
+.poster-frame img{width:100%;height:auto;display:block}
+.hero-right{flex:1;display:flex;flex-direction:column;justify-content:center}
+.hero-title{font-size:40px;margin:0 0 12px 0;color:var(--text-primary)}
+.hero-lead{color:var(--text-secondary);margin:0 0 18px 0;max-width:640px}
+.hero-actions{display:flex;gap:12px}
+.hero-actions .btn-action{background:linear-gradient(90deg,#7c3aed,#06b6d4);color:#021129}
+
+@media (max-width:980px){
+    .site-hero{flex-direction:column;align-items:center}
+    .hero-left{flex-basis:360px}
+    .hero-title{font-size:28px;text-align:center}
+    .hero-lead{text-align:center}
+}
+
+/* Poster tools: small icon row under poster */
+.poster-tools{margin-top:12px}
+.icon-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 12px;border-radius:10px;border:1px solid var(--border-color);background:transparent;color:var(--text-primary);cursor:pointer;font-weight:700}
+.icon-btn:hover{background:var(--insight-bg)}
+
+/* Compact audio container (hidden by default via max-height) */
+.audio-container{max-height:0;overflow:hidden;transition:max-height 0.28s ease;padding:0}
+.audio-container.open{max-height:120px;padding:12px 8px;background:var(--insight-bg);border-radius:10px;margin-top:12px}
+.audio-controls-compact{display:flex;align-items:center;gap:12px}
+.audio-controls-compact .play-btn{width:44px;height:44px;border-radius:10px;border:none;background:var(--google-blue);color:#fff;font-weight:800;font-size:18px;cursor:pointer}
+.audio-controls-compact .play-btn.paused{background:linear-gradient(90deg,#7c3aed,#06b6d4)}
+.audio-controls-compact .time{font-size:13px;color:var(--text-secondary)}
+
+@media (max-width:760px){
+    .icon-btn{padding:8px}
+}
+/* AUDIO TRACKER */
+
+/* legacy right-side audio card styles removed; compact poster audio uses .audio-container and .audio-controls-compact */
